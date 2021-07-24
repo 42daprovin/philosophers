@@ -1,4 +1,0 @@
-ft_usleep    un sleep que haga poco a poco para no perder milisegundos.
-
-cada fork es un mutex.
-
