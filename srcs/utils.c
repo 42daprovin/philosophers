@@ -6,7 +6,7 @@
 /*   By: daprovin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 19:37:31 by daprovin          #+#    #+#             */
-/*   Updated: 2021/07/24 22:06:22 by daprovin         ###   ########.fr       */
+/*   Updated: 2021/07/25 22:29:28 by daprovin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	times_eat(int p_t_eat, int i)
 {
 	if (g_data.n_eat < 0)
 		return (0);
-	if (p_t_eat >= g_data.n_eat)
+	if (p_t_eat >= g_data.n_eat && g_data.t_eat != 0)
 		g_data.t_eat = 1;
 	else
 		g_data.t_eat = 0;
@@ -42,9 +42,10 @@ int	times_eat(int p_t_eat, int i)
 	else
 		return (0);
 }
+
 int	is_not_a_number(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -60,7 +61,7 @@ int	is_not_a_number(char *str)
 
 int	check_data(int ac, char **av)
 {
-	int i;
+	int	i;
 
 	if (ac < 5)
 	{
@@ -72,7 +73,7 @@ int	check_data(int ac, char **av)
 		write(2, "Error: too many arguents\n", 25);
 		return (1);
 	}
-	i = 1;	
+	i = 1;
 	while (av[i])
 	{
 		if (is_not_a_number(av[i]))

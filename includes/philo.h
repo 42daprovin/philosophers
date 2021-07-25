@@ -6,7 +6,7 @@
 /*   By: daprovin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 19:50:31 by daprovin          #+#    #+#             */
-/*   Updated: 2021/07/24 22:03:20 by daprovin         ###   ########.fr       */
+/*   Updated: 2021/07/25 22:20:06 by daprovin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	pthread_t	t_id;
 	long		last_eat;
@@ -28,7 +28,7 @@ typedef struct	s_philo
 	int			t_eat;
 }				t_philo;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	struct timeval	tp;
 	struct timezone	tzp;
@@ -45,12 +45,27 @@ typedef struct	s_data
 
 t_data	g_data;
 
-void	ft_usleep(long slp, long time, struct timeval *tp, struct timezone *tzp);
+void	ft_usleep(long slp, long time, struct timeval *tp,
+			struct timezone *tzp);
 
 long	conv_time(struct timeval *tp, struct timezone *tzp);
 
 int		times_eat(int p_t_eat, int i);
 
 int		check_data(int ac, char **av);
+
+long	ft_atoi(const char *str);
+
+void	philo_forks(int id);
+
+void	philo_eat_sleep(t_philo *philo, int id);
+
+void	*philothread(void *v_philo);
+
+void	init_philo(t_philo *philo, int i);
+
+void	join_threads(t_philo *philo);
+
+void	check_death_eat(t_philo *philo);
 
 #endif

@@ -1,7 +1,9 @@
 NAME	= philo
 
 SRCS	= srcs/main_no_join.c \
-		  srcs/utils.c
+		  srcs/utils.c \
+		  srcs/ft_atoi.c \
+		  srcs/utils2.c
 
 OBJS	= ${SRCS:.c=.o}
 
