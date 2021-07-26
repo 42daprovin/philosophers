@@ -6,7 +6,7 @@
 /*   By: daprovin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 19:50:31 by daprovin          #+#    #+#             */
-/*   Updated: 2021/07/26 17:52:05 by daprovin         ###   ########.fr       */
+/*   Updated: 2021/07/27 00:12:17 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_data
 	int				n_eat;
 	int				t_eat;
 	int				philos;
+	pthread_mutex_t	prot_eat_die;
 }				t_data;
 
 extern t_data	g_data;
@@ -56,7 +57,7 @@ int		check_data(int ac, char **av);
 
 long	ft_atoi(const char *str);
 
-void	philo_forks(int id);
+void	philo_forks(int id, t_philo *philo);
 
 void	philo_eat_sleep(t_philo *philo, int id);
 

@@ -6,28 +6,42 @@
 /*   By: daprovin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 21:13:27 by daprovin          #+#    #+#             */
-/*   Updated: 2021/07/25 22:31:44 by daprovin         ###   ########.fr       */
+/*   Updated: 2021/07/27 00:26:42 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	philo_forks(int id)
+void	philo_forks(int id, t_philo *philo)
 {
 	pthread_mutex_lock(&g_data.fork[(id - 1) % g_data.philos]);
 	if (!g_data.death)
 		printf("%ld %d has taken a fork\n",
 			conv_time(&g_data.tp, &g_data.tzp) - g_data.time, id);
+	if (g_data.philos == 1)
+	{
+		philo->last_eat = conv_time(&g_data.tp, &g_data.tzp);
+		ft_usleep(g_data.t_to_die, g_data.time, &g_data.tp, &g_data.tzp);
+		usleep(2000);
+		return;
+	}
 	pthread_mutex_lock(&g_data.fork[id % g_data.philos]);
 	if (!g_data.death)
 		printf("%ld %d has taken a fork\n",
 			conv_time(&g_data.tp, &g_data.tzp) - g_data.time, id);
+	if (g_data.death)
+	{
+		pthread_mutex_unlock(&g_data.fork[(id - 1) % g_data.philos]);
+		pthread_mutex_unlock(&g_data.fork[id % g_data.philos]);
+	}
 }
 
 void	philo_eat_sleep(t_philo *philo, int id)
 {
 	philo->last_eat = conv_time(&g_data.tp, &g_data.tzp);
+	pthread_mutex_lock(&g_data.prot_eat_die);
 	printf("%ld %d is eating\n", philo->last_eat - g_data.time, id);
+	pthread_mutex_unlock(&g_data.prot_eat_die);
 	philo->t_eat = philo->t_eat + 1;
 	ft_usleep(g_data.t_to_eat, philo->last_eat, &g_data.tp, &g_data.tzp);
 	pthread_mutex_unlock(&g_data.fork[(id - 1) % g_data.philos]);
@@ -71,14 +85,18 @@ void	check_death_eat(t_philo *philo)
 	{
 		if (times_eat(philo[i].t_eat, i))
 		{
+			pthread_mutex_lock(&g_data.prot_eat_die);
 			g_data.death = 1;
+			pthread_mutex_unlock(&g_data.prot_eat_die);
 			break ;
 		}
 		last_eat = philo[i].last_eat;
 		if (conv_time(&g_data.tp, &g_data.tzp) - last_eat
 			>= g_data.t_to_die && last_eat != 0)
 		{
+			pthread_mutex_lock(&g_data.prot_eat_die);
 			g_data.death = 1;
+			pthread_mutex_unlock(&g_data.prot_eat_die);
 			printf("%ld %d died\n",
 				conv_time(&g_data.tp, &g_data.tzp) - g_data.time, i + 1);
 			break ;

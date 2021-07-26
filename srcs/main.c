@@ -6,7 +6,7 @@
 /*   By: daprovin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 18:59:13 by daprovin          #+#    #+#             */
-/*   Updated: 2021/07/26 18:25:29 by daprovin         ###   ########.fr       */
+/*   Updated: 2021/07/27 00:14:00 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,9 @@ void	*philothread(void *v_philo)
 	{
 		if (g_data.death)
 			break ;
-		philo_forks(id);
+		philo_forks(id, philo);
 		if (g_data.death)
-		{
-			pthread_mutex_unlock(&g_data.fork[(id - 1) % g_data.philos]);
-			pthread_mutex_unlock(&g_data.fork[id % g_data.philos]);
 			break ;
-		}
 		philo_eat_sleep(philo, id);
 		if (g_data.death)
 			break ;
@@ -67,6 +63,7 @@ void	init_data(char **av, int ac)
 		pthread_mutex_init(&((g_data.fork)[i]), NULL);
 		i++;
 	}
+	pthread_mutex_init(&g_data.prot_eat_die, NULL);
 }
 
 void	philosophers(void)

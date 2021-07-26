@@ -9,8 +9,10 @@ OBJS	= ${SRCS:.c=.o}
 
 CFLAGS = -Wall -Werror -Wextra
 
+UNAME = $(shell uname)
+
 ifeq ($(UNAME), Linux)
-	CFLAGS += -lphtread
+	CFLAGS += -lpthread
 endif
 
 .c.o:
