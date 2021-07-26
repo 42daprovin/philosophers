@@ -1,17 +1,23 @@
 NAME	= philo
 
-SRCS	= srcs/main_no_join.c \
+SRCS	= srcs/main.c \
 		  srcs/utils.c \
 		  srcs/ft_atoi.c \
 		  srcs/utils2.c
 
 OBJS	= ${SRCS:.c=.o}
 
+CFLAGS = -Wall -Werror -Wextra
+
+ifeq ($(UNAME), Linux)
+	CFLAGS += -lphtread
+endif
+
 .c.o:
-	gcc -c -I includes $< -o ${<:.c=.o}
+	gcc ${CFLAGS} -c -I includes $< -o ${<:.c=.o}
 
 ${NAME}: ${OBJS}
-	gcc ${OBJS} -o ${NAME}
+	gcc ${CFLAGS} ${OBJS} -o ${NAME}
 
 all: ${NAME}
 

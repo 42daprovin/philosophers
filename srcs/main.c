@@ -6,11 +6,13 @@
 /*   By: daprovin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 18:59:13 by daprovin          #+#    #+#             */
-/*   Updated: 2021/07/25 22:30:07 by daprovin         ###   ########.fr       */
+/*   Updated: 2021/07/26 18:25:29 by daprovin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+t_data	g_data;
 
 void	*philothread(void *v_philo)
 {
@@ -89,8 +91,6 @@ void	philosophers(void)
 
 int	main(int ac, char **av)
 {
-	int	i;
-
 	if (check_data(ac, av))
 		return (1);
 	init_data(av, ac);

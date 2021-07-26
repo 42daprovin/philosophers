@@ -6,7 +6,7 @@
 /*   By: daprovin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 19:50:31 by daprovin          #+#    #+#             */
-/*   Updated: 2021/07/25 22:20:06 by daprovin         ###   ########.fr       */
+/*   Updated: 2021/07/26 17:52:05 by daprovin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_data
 	int				philos;
 }				t_data;
 
-t_data	g_data;
+extern t_data	g_data;
 
 void	ft_usleep(long slp, long time, struct timeval *tp,
 			struct timezone *tzp);
