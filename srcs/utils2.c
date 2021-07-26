@@ -6,7 +6,7 @@
 /*   By: daprovin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 21:13:27 by daprovin          #+#    #+#             */
-/*   Updated: 2021/07/27 00:26:42 by david            ###   ########.fr       */
+/*   Updated: 2021/07/27 01:41:44 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,18 +85,14 @@ void	check_death_eat(t_philo *philo)
 	{
 		if (times_eat(philo[i].t_eat, i))
 		{
-			pthread_mutex_lock(&g_data.prot_eat_die);
-			g_data.death = 1;
-			pthread_mutex_unlock(&g_data.prot_eat_die);
+			death();
 			break ;
 		}
 		last_eat = philo[i].last_eat;
 		if (conv_time(&g_data.tp, &g_data.tzp) - last_eat
 			>= g_data.t_to_die && last_eat != 0)
 		{
-			pthread_mutex_lock(&g_data.prot_eat_die);
-			g_data.death = 1;
-			pthread_mutex_unlock(&g_data.prot_eat_die);
+			death();
 			printf("%ld %d died\n",
 				conv_time(&g_data.tp, &g_data.tzp) - g_data.time, i + 1);
 			break ;

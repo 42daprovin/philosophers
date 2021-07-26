@@ -6,7 +6,7 @@
 /*   By: daprovin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 19:50:31 by daprovin          #+#    #+#             */
-/*   Updated: 2021/07/27 00:12:17 by david            ###   ########.fr       */
+/*   Updated: 2021/07/27 01:41:07 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,9 @@ void	init_philo(t_philo *philo, int i);
 void	join_threads(t_philo *philo);
 
 void	check_death_eat(t_philo *philo);
+
+int		check_0(char c);
+
+void	death(void);
 
 #endif

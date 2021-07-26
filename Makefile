@@ -3,7 +3,8 @@ NAME	= philo
 SRCS	= srcs/main.c \
 		  srcs/utils.c \
 		  srcs/ft_atoi.c \
-		  srcs/utils2.c
+		  srcs/utils2.c \
+		  srcs/utils3.c
 
 OBJS	= ${SRCS:.c=.o}
 
