@@ -6,7 +6,7 @@
 /*   By: daprovin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 18:59:13 by daprovin          #+#    #+#             */
-/*   Updated: 2021/07/27 00:14:00 by david            ###   ########.fr       */
+/*   Updated: 2021/07/27 14:25:35 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*philothread(void *v_philo)
 	{
 		if (g_data.death)
 			break ;
-		philo_forks(id, philo);
+		philo_forks(id);
 		if (g_data.death)
 			break ;
 		philo_eat_sleep(philo, id);

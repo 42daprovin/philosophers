@@ -6,13 +6,13 @@
 /*   By: daprovin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 21:13:27 by daprovin          #+#    #+#             */
-/*   Updated: 2021/07/27 01:41:44 by david            ###   ########.fr       */
+/*   Updated: 2021/07/27 14:25:03 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	philo_forks(int id, t_philo *philo)
+void	philo_forks(int id)
 {
 	pthread_mutex_lock(&g_data.fork[(id - 1) % g_data.philos]);
 	if (!g_data.death)
@@ -20,9 +20,7 @@ void	philo_forks(int id, t_philo *philo)
 			conv_time(&g_data.tp, &g_data.tzp) - g_data.time, id);
 	if (g_data.philos == 1)
 	{
-		philo->last_eat = conv_time(&g_data.tp, &g_data.tzp);
 		ft_usleep(g_data.t_to_die, g_data.time, &g_data.tp, &g_data.tzp);
-		usleep(2000);
 		return;
 	}
 	pthread_mutex_lock(&g_data.fork[id % g_data.philos]);
@@ -56,7 +54,7 @@ void	philo_eat_sleep(t_philo *philo, int id)
 void	init_philo(t_philo *philo, int i)
 {
 	philo->p_id = i + 1;
-	philo->last_eat = 0;
+	philo->last_eat = g_data.time;
 	philo->t_eat = 0;
 	pthread_create(&(philo->t_id), NULL, philothread, (void *)philo);
 	i++;

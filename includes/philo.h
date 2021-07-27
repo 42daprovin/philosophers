@@ -6,7 +6,7 @@
 /*   By: daprovin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 19:50:31 by daprovin          #+#    #+#             */
-/*   Updated: 2021/07/27 01:41:07 by david            ###   ########.fr       */
+/*   Updated: 2021/07/27 14:25:23 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		check_data(int ac, char **av);
 
 long	ft_atoi(const char *str);
 
-void	philo_forks(int id, t_philo *philo);
+void	philo_forks(int id);
 
 void	philo_eat_sleep(t_philo *philo, int id);
 
