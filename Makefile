@@ -10,17 +10,19 @@ OBJS	= ${SRCS:.c=.o}
 
 CFLAGS = -Wall -Werror -Wextra
 
+LFLAG =
+
 UNAME = $(shell uname)
 
 ifeq ($(UNAME), Linux)
-	CFLAGS += -lpthread
+	LFLAG += -lpthread
 endif
 
 .c.o:
 	gcc ${CFLAGS} -c -I includes $< -o ${<:.c=.o}
 
 ${NAME}: ${OBJS}
-	gcc ${CFLAGS} ${OBJS} -o ${NAME}
+	gcc ${CFLAGS} ${OBJS} ${LFLAG} -o ${NAME}
 
 all: ${NAME}
 
