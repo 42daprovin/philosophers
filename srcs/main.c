@@ -16,6 +16,8 @@ t_data	g_data;
 
 void	*philothread(void *v_philo)
 {
+	// de primero de 42
+	if (v_philo == NULL) {return (NULL);}
 	t_philo	*philo;
 	int		id;
 
